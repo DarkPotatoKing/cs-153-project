@@ -1,5 +1,6 @@
+SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS `groups`;
-
+SET foreign_key_checks = 1;
 #
 # Table structure for table 'groups'
 #
@@ -20,8 +21,9 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
      (2,'members','General User');
 
 
-
+SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS `users`;
+SET foreign_key_checks = 1;
 
 #
 # Table structure for table 'users'
@@ -59,7 +61,9 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`
      ('1','127.0.0.1','administrator','$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36','','admin@admin.com','',NULL,'1268889823','1268889823','1', 'Admin','istrator','ADMIN','0',NULL,NULL);
 
 
+SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS `users_groups`;
+SET foreign_key_checks = 1;
 
 #
 # Table structure for table 'users_groups'
@@ -81,8 +85,9 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
      (1,1,1),
      (2,1,2);
 
-
+SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS `login_attempts`;
+SET foreign_key_checks = 1;
 
 #
 # Table structure for table 'login_attempts'
@@ -95,3 +100,19 @@ CREATE TABLE `login_attempts` (
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `active_logins`;
+
+#
+# Table structure for table 'active_logins'
+#
+
+CREATE TABLE `active_logins` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- add sample seed for active_logins
+INSERT INTO `active_logins` (`user_id`) VALUES ('1');
+INSERT INTO `active_logins` (`user_id`) VALUES ('2');
