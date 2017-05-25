@@ -10,6 +10,13 @@
     echo $user->address."<br>";
     echo "Birthday: ";
     echo $user->birthday."<br><br>";
-
+	
+	if($query = $this->db->query("SELECT * FROM active_logins;")){
+		while($row = $query->fetch_assoc()){
+			echo $row['user_id']."<br>";
+		}
+	}	
+	
+	
   ?>
 </div>
